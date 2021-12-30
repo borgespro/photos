@@ -6,11 +6,14 @@ module.exports = {
   extends: [
     'plugin:react/recommended',
     'airbnb',
+    'airbnb-typescript',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
+    project: './tsconfig.json',
     ecmaFeatures: {
       jsx: true,
+      tsx: true,
     },
     ecmaVersion: 13,
     sourceType: 'module',
@@ -20,5 +23,7 @@ module.exports = {
     '@typescript-eslint',
   ],
   rules: {
+    'react/jsx-filename-extension': [0],
+    'import/prefer-default-export': [0]
   },
 };
