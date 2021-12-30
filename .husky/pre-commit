@@ -1,0 +1,5 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+yarn run test --env=jsdom --watchAll=false --bail
+yarn run eslint --fix
