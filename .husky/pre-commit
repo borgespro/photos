@@ -1,5 +1,5 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-yarn run test --env=jsdom --watchAll=false
 yarn run eslint --fix
+yarn run test --env=jsdom --watchAll=false
