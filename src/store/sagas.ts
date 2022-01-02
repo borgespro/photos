@@ -1,5 +1,5 @@
 import {
-  call, takeLatest, put, SagaReturnType,
+  call, takeLatest, takeLeading, put, SagaReturnType,
 } from 'redux-saga/effects';
 
 import { getPhotos, getPhoto } from '../services/http';
@@ -27,6 +27,6 @@ function* getPhotoSaga({ payload }: Action) {
 }
 
 export default function* mainSaga(): Generator {
-  yield takeLatest(listPhotos.start.toString(), listPhotosSaga);
+  yield takeLeading(listPhotos.start.toString(), listPhotosSaga);
   yield takeLatest(getPhotoDetail.start.toString(), getPhotoSaga);
 }
