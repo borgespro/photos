@@ -13,6 +13,7 @@
     "axios": "^0.24.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-infinite-scroll-component": "^6.1.0",
     "react-redux": "^7.2.6",
     "react-redux-await-control": "^0.12.4",
     "react-router-dom": "6",
@@ -51,6 +52,7 @@
     "styled-components": "^5"
   },
   "devDependencies": {
+    "@types/react-infinite-scroll-component": "^5.0.0",
     "@types/styled-components": "^5.1.19",
     "@typescript-eslint/eslint-plugin": "^5.8.1",
     "@typescript-eslint/parser": "^5.8.1",

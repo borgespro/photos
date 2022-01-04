@@ -1,19 +1,22 @@
 import {
-  call, takeLatest, takeLeading, put, SagaReturnType,
+  call, takeLatest, takeLeading, put, SagaReturnType, select,
 } from 'redux-saga/effects';
 
 import { getPhotos, getPhoto } from '../services/http';
+import { Photo } from '../typings/photo';
 import { Action, getPhoto as getPhotoDetail, listPhotos } from './actions';
 
 type GetPhotosResponse = SagaReturnType<typeof getPhotos>;
 type GetPhotoResponse = SagaReturnType<typeof getPhoto>;
 
-function* listPhotosSaga() {
+function* listPhotosSaga({ payload, meta }: Action) {
   try {
-    const { data }: GetPhotosResponse = yield call(getPhotos);
-    yield put(listPhotos.success(data));
+    const { data }: GetPhotosResponse = yield call(getPhotos, payload);
+    const oldList: Photo[] = yield select(listPhotos.getResult(meta?.actionId));
+    yield put(listPhotos.success([...oldList, ...data], meta));
+    yield put(listPhotos.clear({ actionId: payload - 1 }));
   } catch (e) {
-    yield put(listPhotos.failure(e));
+    yield put(listPhotos.failure(e, meta));
   }
 }
 

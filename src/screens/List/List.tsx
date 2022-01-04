@@ -1,13 +1,12 @@
 import React from 'react';
 
-import { Container } from './List.styled';
-
-import { AppBar } from '../../components';
+import { PhotosGrid } from '../../components';
+import Base from '../Base';
 
 export default function List(): React.ReactElement {
   return (
-    <Container>
-      <AppBar />
-    </Container>
+    <Base>
+      <PhotosGrid />
+    </Base>
   );
 }
