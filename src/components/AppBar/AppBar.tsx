@@ -7,7 +7,7 @@ import {
 export default function AppBar(): React.ReactElement {
   return (
     <Container>
-      <Content>
+      <Content to="/">
         <Icon />
         <Title>Photos</Title>
       </Content>

@@ -23,9 +23,9 @@ function* listPhotosSaga({ payload, meta }: Action) {
 function* getPhotoSaga({ payload }: Action) {
   try {
     const { data }: GetPhotoResponse = yield call(getPhoto, payload);
-    yield put(listPhotos.success(data));
+    yield put(getPhotoDetail.success(data));
   } catch (e) {
-    yield put(listPhotos.failure(e));
+    yield put(getPhotoDetail.failure(e));
   }
 }
 

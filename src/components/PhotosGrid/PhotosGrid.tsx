@@ -9,7 +9,6 @@ import { listPhotos } from '../../store/actions';
 import { Photo } from '../../typings/photo';
 import useWindowDimensions from '../../hooks/useWindowDimensions';
 
-import { Container, ListWrapper } from './PhotosGrid.styled';
 import PhotoBox from '../PhotoBox';
 
 type ListPhotoControl = {
@@ -77,43 +76,39 @@ export default function PhotosGrid(): React.ReactElement {
   ), [photosControl.data, columnSize]);
 
   return (
-    <Container>
-      <ListWrapper>
-        <InfiniteLoader
-          isItemLoaded={isItemLoaded}
-          itemCount={itemCount}
-          loadMoreItems={nextPage}
-          threshold={5}
+    <InfiniteLoader
+      isItemLoaded={isItemLoaded}
+      itemCount={itemCount}
+      loadMoreItems={nextPage}
+      threshold={5}
+    >
+      {({ ref, onItemsRendered }) => (
+        <Grid
+          ref={ref}
+          style={{ marginLeft: (width - CARD_WIDTH * columnSize) / 2 }}
+          columnCount={columnSize}
+          columnWidth={CARD_WIDTH}
+          height={height - 70}
+          rowCount={photosControl.data.length / columnSize}
+          rowHeight={CARD_HEIGHT}
+          width={width}
+          onItemsRendered={({
+            visibleRowStartIndex,
+            visibleRowStopIndex,
+            overscanRowStopIndex,
+            overscanRowStartIndex,
+          }) => {
+            onItemsRendered({
+              overscanStartIndex: overscanRowStartIndex,
+              overscanStopIndex: overscanRowStopIndex,
+              visibleStartIndex: visibleRowStartIndex,
+              visibleStopIndex: visibleRowStopIndex,
+            });
+          }}
         >
-          {({ ref, onItemsRendered }) => (
-            <Grid
-              ref={ref}
-              style={{ marginLeft: (width - CARD_WIDTH * columnSize) / 2 }}
-              columnCount={columnSize}
-              columnWidth={CARD_WIDTH}
-              height={height - 70}
-              rowCount={photosControl.data.length / columnSize}
-              rowHeight={CARD_HEIGHT}
-              width={width}
-              onItemsRendered={({
-                visibleRowStartIndex,
-                visibleRowStopIndex,
-                overscanRowStopIndex,
-                overscanRowStartIndex,
-              }) => {
-                onItemsRendered({
-                  overscanStartIndex: overscanRowStartIndex,
-                  overscanStopIndex: overscanRowStopIndex,
-                  visibleStartIndex: visibleRowStartIndex,
-                  visibleStopIndex: visibleRowStopIndex,
-                });
-              }}
-            >
-              {renderCell}
-            </Grid>
-          )}
-        </InfiniteLoader>
-      </ListWrapper>
-    </Container>
+          {renderCell}
+        </Grid>
+      )}
+    </InfiniteLoader>
   );
 }

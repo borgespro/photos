@@ -1,18 +1,15 @@
 import React from 'react';
+import { Outlet } from 'react-router-dom';
 
 import { AppBar } from '../../components';
 import { Container, Content } from './Base.styled';
 
-type BaseProps = {
-  children: React.ReactNode;
-};
-
-export default function Base({ children }: BaseProps) {
+export default function Base() {
   return (
     <Container>
       <AppBar />
       <Content>
-        {children}
+        <Outlet />
       </Content>
     </Container>
   );

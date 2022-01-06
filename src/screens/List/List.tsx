@@ -1,12 +1,14 @@
 import React from 'react';
 
 import { PhotosGrid } from '../../components';
-import Base from '../Base';
+import { Container, GridWrapper } from './List.styled';
 
 export default function List(): React.ReactElement {
   return (
-    <Base>
-      <PhotosGrid />
-    </Base>
+    <Container>
+      <GridWrapper>
+        <PhotosGrid />
+      </GridWrapper>
+    </Container>
   );
 }
