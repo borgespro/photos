@@ -9,11 +9,11 @@ type PhotoBoxProps = {
 };
 
 export default function PhotoBox({ data }: PhotoBoxProps): React.ReactElement {
-  const imageUrl = useMemo(() => `${API_URL}/id/${data.id}/300`, [data.id]);
+  const imageUrl = useMemo(() => `${API_URL}/id/${data?.id}/300`, [data?.id]);
 
   return (
     <Container>
-      <Image alt={data.id} src={imageUrl} />
+      <Image alt={data?.id} src={imageUrl} />
     </Container>
   );
 }
