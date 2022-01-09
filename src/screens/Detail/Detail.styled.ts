@@ -12,6 +12,7 @@ export const Title = styled.span`
   margin-top: 25px;
   font-size: 32px;
   font-weight: 600;
+  color: ${({ theme }) => theme.colors.textDark};
 `;
 
 export const LinkSource = styled.a`
